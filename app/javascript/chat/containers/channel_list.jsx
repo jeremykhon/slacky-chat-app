@@ -3,23 +3,21 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { selectChannel, fetchMessages } from '../actions/index';
+import { Link } from 'react-router-dom'; 
 
 class ChannelList extends Component {
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.selectedChannel !== this.props.selectedChannel) {
-      this.props.fetchMessages(nextProps.selectedChannel);
-    }
-  }
-
   handleClick = (channel) => {
-    this.props.selectChannel(channel);
+    // this.props.selectChannel()
+    this.props.fetchMessages(channel)
   }
 
   renderChannel = (channel) => {
     return (
-      <li key={channel} onClick={() => this.handleClick(channel)}>
-        #{channel}
-      </li>
+      <li key={channel} >
+        <Link to={`/channels/${channel}`} onClick={() => this.handleClick(channel)}>
+          #{channel}
+        </Link>
+      </li> 
     );
   }
 

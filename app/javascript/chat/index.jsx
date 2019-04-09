@@ -15,7 +15,7 @@ const chatContainer = document.getElementById('app');
 
 const initialState = {
   messages: [],
-  channels: [ 'general', 'react', 'paris' ], // TODO: get that from Rails DB.
+  channels: JSON.parse(chatContainer.dataset.channels).map(c => c.name)
 };
 
 const reducers = combineReducers({
@@ -23,7 +23,9 @@ const reducers = combineReducers({
   channels: (state = null, action) => state
 });
 
-const middlewares = applyMiddleware(logger, ReduxPromise);
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; 
+const middlewares = composeEnhancers(applyMiddleware(ReduxPromise, logger));
+
 const store = createStore(reducers, initialState, middlewares);
 
 ReactDOM.render(
