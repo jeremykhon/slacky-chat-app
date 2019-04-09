@@ -4,9 +4,11 @@ import ChannelList from '../containers/channel_list';
 
 const App = (props) => {
   return (
-    <div className="row app">
-      <ChannelList selectedChannel={props.match.params.channel} />
-      <MessageList selectedChannel={props.match.params.channel} />
+    <div className="container-fluid">
+      <div className="row app">
+        <ChannelList selectedChannel={props.match.params.channel} />
+        <MessageList selectedChannel={props.match.params.channel} />
+      </div>
     </div>
   );
 };
