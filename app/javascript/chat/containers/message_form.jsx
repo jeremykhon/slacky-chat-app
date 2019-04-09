@@ -32,7 +32,7 @@ class MessageForm extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit} className="message-form noSelect">
-        <input className="message-form-input form-control noSelect" type="text" value={this.state.value} onChange={this.handleChange} ref={(form) => { this.form = form; }} />
+        <input className="message-form-input form-control noSelect" type="text" value={this.state.value} placeholder={`Message #${this.props.selectedChannel}`} onChange={this.handleChange} ref={(form) => { this.form = form; }} />
         <button className="message-form-button noSelect" type="submit">Send</button>
       </form>
     );
