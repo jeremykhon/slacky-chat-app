@@ -1,0 +1,60 @@
+body {
+  font-family: 'Open Sans', sans-serif;
+  background-color: white;
+  font-size: 14px;
+}
+
+.message-container {
+  margin-bottom: 5px;
+
+  .message-author-timestamp-container{
+    display: flex;
+    align-items: flex-end;
+
+    .message-author{
+      margin-right: 5px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+    
+    .message-timestamp{
+      color: grey;
+      font-size: 12px;
+    }
+  }
+}
+
+input:focus {
+  outline: none !important;
+}
+
+select:focus {
+  outline: none !important;
+}
+
+.message-form {
+  display: flex;
+  padding: 10px 0px;
+  height: 70px;
+
+  .message-form-input {
+    padding: 10px;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    border: solid 2px #d4d4d4;
+  }
+
+  .message-form-button {
+    padding: 10px 17px;
+    margin-left: 10px;
+    border-radius: 10px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+    border: none;
+    background-color: #D23333;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+  }
+}
+

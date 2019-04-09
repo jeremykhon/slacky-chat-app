@@ -24,7 +24,7 @@ class ChannelList extends Component {
   render() {
     const { channels } = this.props;
     return (
-      <ul className="col-xs-3 left-container">
+      <ul className="col-2 left-container">
         {channels.map(channel => this.renderChannel(channel))}
       </ul>
     );

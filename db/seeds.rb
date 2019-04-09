@@ -27,7 +27,8 @@ users = nicknames.map do |nickname|
 end
 
 20.times do
-  Message.create! user: users.sample, channel: channels.sample, content: Faker::TvShows::HowIMetYourMother.quote
+  random_user = users.sample
+  Message.create! user: random_user, channel: channels.sample, nickname: random_user.nickname, content: Faker::TvShows::HowIMetYourMother.quote
 end
 
 puts 'Channels:'

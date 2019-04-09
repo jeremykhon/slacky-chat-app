@@ -44,13 +44,11 @@ class MessageList extends Component {
   render() {
     const { messages } = this.props;
     return (
-      <div className="col-xs-9 right-container">
+      <div className="col-10 right-container">
         <div className="message-list" ref={(list) => { this.list = list; }}>
           {messages.map(message => <Message message={message} key={message.id} />)}
         </div>
-        <div className="message-form">
-          {<MessageForm selectedChannel={this.props.selectedChannel}/>}
-        </div>
+        {<MessageForm selectedChannel={this.props.selectedChannel}/>}
       </div>
     );
   }
