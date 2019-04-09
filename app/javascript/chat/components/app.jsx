@@ -5,8 +5,8 @@ import ChannelList from '../containers/channel_list';
 const App = () => {
   return (
     <div className="row app">
-      <ChannelList />
-      <MessageList />
+      <ChannelList selectedChannel={props.match.params.channel} />
+      <MessageList selectedChannel={props.match.params.channel} />
     </div>
   );
 };
