@@ -23,15 +23,17 @@ class MessageForm extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.createMessage(this.props.selectedChannel, this.state.value);
+    if (this.state.value) {
+      this.props.createMessage(this.props.selectedChannel, this.state.value);
+    };
     this.setState({ value: '' });
   }
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit} className="message-form">
-        <input className="message-form-input form-control" type="text" value={this.state.value} onChange={this.handleChange} ref={(form) => { this.form = form; }} />
-        <button className="message-form-button" type="submit">Send</button>
+      <form onSubmit={this.handleSubmit} className="message-form noSelect">
+        <input className="message-form-input form-control noSelect" type="text" value={this.state.value} onChange={this.handleChange} ref={(form) => { this.form = form; }} />
+        <button className="message-form-button noSelect" type="submit">Send</button>
       </form>
     );
   }

@@ -13,20 +13,21 @@ class ChannelList extends Component {
 
   renderChannel = (channel) => {
     return (
-      <li key={channel} >
-        <Link to={`/channels/${channel}`} onClick={() => this.handleClick(channel)}>
+      <div key={channel} >
+        <Link className="channel-link" to={`/channels/${channel}`} onClick={() => this.handleClick(channel)}>
           #{channel}
         </Link>
-      </li> 
+      </div> 
     );
   }
 
   render() {
     const { channels } = this.props;
     return (
-      <ul className="col-2 left-container">
+      <div className="col-2 left-container">
+        <div className="channel-label">Channels</div>
         {channels.map(channel => this.renderChannel(channel))}
-      </ul>
+      </div>
     );
   }
 }
