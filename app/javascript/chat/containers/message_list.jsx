@@ -41,6 +41,17 @@ class MessageList extends Component {
     );
   }
 
+  strToRGB = (str) => {
+    var hash = 0;
+    for (var i = 0; i < str.length; i++) {
+       hash = str.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    var c = (hash & 0x00FFFFFF)
+        .toString(16)
+        .toUpperCase();
+    return "#" + "00000".substring(0, 6 - c.length) + c;
+  }
+  
   calcDate = (message) => {
     if (message === undefined) {
       return null;
@@ -57,18 +68,59 @@ class MessageList extends Component {
     return date
   }
 
-  renderDateChunk = (dayChunk, index) => {
+  renderNameChunk = (nameChunk, index) => {
+    const color = this.strToRGB(nameChunk[0].nickname);
     return (
       <div key={index}>
-        <div className="date-divider text-center">
-          {this.calcLongDate(dayChunk[0])}
+        <div style={{ color }} className="name-divider">
+          {nameChunk[0].nickname}
         </div>
-        {dayChunk.map(message => <Message message={message} key={message.id} />)}
+        {nameChunk.map(message => <Message message={message} key={message.id} />)}
       </div>
     )
   }
 
-  groupByDateName = (messages) => {
+  groupByName = (dayChunk) => {
+    const groupedByName = []
+    let temp = []
+    dayChunk.forEach((message, index) => {
+      if (index === 0) {
+        temp.push(message);
+      } else if (message.nickname !== dayChunk[index-1].nickname) {
+        groupedByName.push(temp);
+        temp = [];
+        temp.push(message);
+      } else {
+        temp.push(message);
+      }
+    })
+    groupedByName.push(temp)
+    
+    return groupedByName.map((nameChunk, index) => {
+      return (
+        this.renderNameChunk(nameChunk, index)   
+      )
+    })
+  }
+
+  renderDateChunk = (dayChunk, index) => {
+    if (dayChunk.length > 0) {
+      return (
+        <div key={index}>
+          <div className="date-divider text-center">
+            {this.calcLongDate(dayChunk[0])}
+          </div>
+          {this.groupByName(dayChunk)}
+        </div>
+      )
+    } else {
+      return (
+        <div key="no-messages"></div>
+      )
+    }
+  }
+
+  groupByDate = (messages) => {
     const groupedByDate = []
     let temp = []
     messages.forEach((message, index) => {
@@ -86,7 +138,7 @@ class MessageList extends Component {
     
     return groupedByDate.map((dayChunk, index) => {
       return (
-        this.renderDateChunk(dayChunk, index)
+        this.renderDateChunk(dayChunk, index)   
       )
     })
   }
@@ -97,7 +149,7 @@ class MessageList extends Component {
       <div className="col-10 right-container">
         <div className="channel-title">{`#${this.props.selectedChannel}`}</div>
         <div className="message-list" ref={(list) => { this.list = list; }}>
-          {this.groupByDateName(messages)}
+          {this.groupByDate(messages)}
         </div>
         {<MessageForm selectedChannel={this.props.selectedChannel}/>}
       </div>

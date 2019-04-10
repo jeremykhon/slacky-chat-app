@@ -86,27 +86,24 @@ body {
   }
 }
 
+.name-divider {
+  
+}
+
 .message-container {
   margin-bottom: 5px;
+  padding: 0px 10px;
+  display: flex;
+  align-items: flex-end;
 
-  .message-author-timestamp-container{
-    display: flex;
-    align-items: flex-end;
-
-    .message-author{
-      margin-right: 5px;
-      font-weight: bold;
-      font-size: 14px;
-    }
-    
-    .message-timestamp{
-      color: grey;
-      font-size: 12px;
-    }
-  }
-  
   .message-content {
-    margin-left: 5px;
+    margin-right: 10px;
+  }
+
+  .message-timestamp{
+    color: grey;
+    font-size: 11px;
+    min-width: 70px;
   }
 } 
 
