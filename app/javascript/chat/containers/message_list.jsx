@@ -34,7 +34,7 @@ class MessageList extends Component {
       {
         received: (message) => {
           if (message.channel === props.selectedChannel) {
-            props.appendMessage(message);
+            this.fetchMessages(props.selectedChannel);
           }
         }
       }
