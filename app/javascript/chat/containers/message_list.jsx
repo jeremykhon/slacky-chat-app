@@ -17,6 +17,7 @@ class MessageList extends Component {
   componentWillReceiveProps(nextProps) { // For after switching channels
     if (this.props.selectedChannel != nextProps.selectedChannel) {
       this.subscribeActionCable(nextProps);
+      App[`channel_${this.props.selectedChannel}`].unsubscribe()
     }
   }
 
@@ -34,7 +35,7 @@ class MessageList extends Component {
       {
         received: (message) => {
           if (message.channel === props.selectedChannel) {
-            this.fetchMessages();
+            this.fetchMessages(this.props.selectedChannel);
           }
         }
       }
