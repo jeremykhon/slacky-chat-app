@@ -57,6 +57,17 @@ class MessageList extends Component {
     return date
   }
 
+  renderDateChunk = (dayChunk, index) => {
+    return (
+      <div key={index}>
+        <div className="date-divider text-center">
+          {this.calcLongDate(dayChunk[0])}
+        </div>
+        {dayChunk.map(message => <Message message={message} key={message.id} />)}
+      </div>
+    )
+  }
+
   groupByDateName = (messages) => {
     const groupedByDate = []
     let temp = []
@@ -74,14 +85,8 @@ class MessageList extends Component {
     groupedByDate.push(temp)
     
     return groupedByDate.map((dayChunk, index) => {
-      console.log(dayChunk)
       return (
-        <div key={index}>
-          <div className="date-divider text-center">
-            {this.calcLongDate(dayChunk[0])}
-          </div>
-          {dayChunk.map(message => <Message message={message} key={message.id} />)}
-        </div>
+        this.renderDateChunk(dayChunk, index)
       )
     })
   }
