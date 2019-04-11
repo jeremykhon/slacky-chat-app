@@ -48,7 +48,7 @@ export function fetchChannels() {
 }
 
 
-export function createChannel(name) {
+export function createChannel(name, callback) {
   const csrfToken = document.querySelector('meta[name="csrf-token"]').attributes.content.value;
   const body = { name };
   const promise = fetch(`${BASE_URL}/channels`, {
@@ -60,7 +60,6 @@ export function createChannel(name) {
     },
     body: JSON.stringify(body)
   }).then(response => response.json());
-
   return {
     type: CHANNEL_CREATED,
     payload: promise

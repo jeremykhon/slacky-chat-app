@@ -14,17 +14,20 @@ const style={
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: 'rgba(0, 0, 0, 0.1)',
+    backgroundColor: 'rgba(0, 0, 0, 0.15)',
     zIndex: '3',
 
   },
   content: {
-    top                   : '50%',
-    left                  : '50%',
-    right                 : 'auto',
-    bottom                : 'auto',
-    marginRight           : '-50%',
-    transform             : 'translate(-50%, -50%)'
+    top: '40%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+    backgroundColor: '#212326',
+    border: 'none',
+    padding: '30px 25px'
   }
 }
 
@@ -68,9 +71,11 @@ class ChannelList extends Component {
       <div>
         <div className="navbar"></div>
         <div className="channels">
-          <div className="channel-label">Channels</div>
+          <div className="channel-label-container">
+            <div className="channel-label">Channels</div>
+            <i className="fas fa-plus-circle" onClick={this.openModal} style={{cursor: 'pointer'}}></i>
+          </div>
           {channels.map((channel, index) => this.renderChannel(channel, index))}
-          <button onClick={this.openModal}>New Channel</button>
           <Modal
           isOpen={this.state.modalIsOpen}
           onRequestClose={this.closeModal}
@@ -79,7 +84,6 @@ class ChannelList extends Component {
           ariaHideApp={false}
           >    
             <ChannelForm closeModal={this.closeModal}/>
-            <button onClick={this.closeModal}>close</button>
           </Modal>
         </div>
       </div>

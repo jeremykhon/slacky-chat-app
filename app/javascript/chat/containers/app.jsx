@@ -41,6 +41,7 @@ class App extends React.Component {
         open={this.state.sidebarOpen}
         docked={this.state.sidebarDocked}
         onSetOpen={this.onSetSidebarOpen}
+        transitions={true}
         styles={{ sidebar: { background: "white" } }}
       >
         <div className="navbar">

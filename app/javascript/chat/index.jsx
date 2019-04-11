@@ -5,13 +5,11 @@ import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import logger from 'redux-logger'
 import ReduxPromise from 'redux-promise';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-
+import { Router, Route, Switch } from 'react-router-dom';
 import App from './containers/app';
 import MessagesReducer from './reducers/messages_reducer';
 import ChannelsReducer from './reducers/channels_reducer';
-
-
+import history from './history'
 // internal modules
 const chatContainer = document.getElementById('app');
 
@@ -32,11 +30,11 @@ const store = createStore(reducers, initialState, middlewares);
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
+    <Router history={history}>
       <Switch>
         <Route path="/channels/:channel" component={App} />
       </Switch>
-    </BrowserRouter>
+    </Router>
   </Provider>,
   chatContainer
 );

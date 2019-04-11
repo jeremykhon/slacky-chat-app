@@ -5,6 +5,7 @@ body {
 }
 
 .noSelect {
+  outline: none !important; 
 
   &:focus {
     box-shadow: none;
@@ -17,12 +18,22 @@ body {
   color: white;
   min-width: 300px;
   padding: 20px;
+  overflow: auto;
 
-  .channel-label {
-    font-size: 18px;
-    font-weight: bold;
+  .channel-label-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     margin-bottom: 10px;
+
+    .channel-label {
+      font-size: 18px;
+      font-weight: bold;
+    }
   }
+
+
+  
 
   .channel-container {
     margin-bottom: 5px;
@@ -128,4 +139,51 @@ body {
 
 .open-channel-button {
   color: rgb(245, 245, 245);
+}
+
+
+
+.channel-form {
+  .create-channel-title {
+    margin-bottom: 20px;
+  }
+  
+  .channel-form-input {
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    background-color: #494A53;
+    color: rgb(245, 245, 245);
+    margin-bottom: 20px;
+  }
+
+  .channel-form-buttons-container {
+    display: flex;
+    justify-content: flex-end;
+
+    .channel-form-cancel {
+      padding: 5px 15px;
+      margin-left: 10px;
+      border-radius: 5px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+      border: solid 1px rgba(255,255,255,0.2);
+      background-color: #212326;
+      color: rgb(245, 245, 245);
+      font-size: 14px;
+      font-weight: bold;
+    }
+  
+    .channel-form-button {
+      padding: 5px 15px;
+      margin-left: 10px;
+      border-radius: 5px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+      border: none;
+      background-color: #D23333;
+      color: rgb(245, 245, 245);
+      font-size: 14px;
+      font-weight: bold;
+    }
+  }
 }

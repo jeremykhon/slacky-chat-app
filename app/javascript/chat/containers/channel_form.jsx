@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { createChannel } from '../actions/index';
+import { createChannel, fetchMessages } from '../actions/index';
+import history from '../history';
 
 class ChannelForm extends Component {
   constructor(props) {
@@ -25,15 +26,20 @@ class ChannelForm extends Component {
     event.preventDefault();
     if (this.state.value) {
       this.props.createChannel(this.state.value);
+      this.props.closeModal();
+      history.push(`/channels/${this.state.value}`);
     };
-    this.props.closeModal()
   }
 
   render() {
     return (
       <form onSubmit={this.handleSubmit} className="channel-form noSelect">
-        <input className="channel-form-input form-control noSelect" type="text" value={this.state.value} onChange={this.handleChange} ref={(form) => { this.form = form; }} />
-        <button className="channel-form-button noSelect" type="submit">Send</button>
+        <div className="create-channel-title">Create a Channel</div>
+        <input className="channel-form-input form-control noSelect" type="text" value={this.state.value} onChange={this.handleChange} placeholder={'secret_chat'} ref={(form) => { this.form = form; }} />
+        <div className="channel-form-buttons-container">
+          <button className="channel-form-cancel noSelect" type="button" onClick={this.props.closeModal}>Cancel</button>
+          <button className="channel-form-button noSelect" type="submit">Create</button>
+        </div>
       </form>
     );
   }
@@ -41,7 +47,7 @@ class ChannelForm extends Component {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
-    { createChannel },
+    { createChannel, fetchMessages},
     dispatch
   );
 }
