@@ -15,16 +15,26 @@ body {
   height: calc(100vh - 56px);
   background-color: #2E3136;
   color: white;
-  padding: 10px;
+  min-width: 300px;
+  padding: 20px;
 
   .channel-label {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .channel-container {
     margin-bottom: 5px;
+
+    &:focus {
+      background-color:red;
+    }
   }
 
   .channel-link {
     color: rgb(245, 245, 245);
+    font-size: 16px;
 
 
   }
@@ -116,3 +126,6 @@ body {
   }
 }
 
+.open-channel-button {
+  color: rgb(245, 245, 245);
+}

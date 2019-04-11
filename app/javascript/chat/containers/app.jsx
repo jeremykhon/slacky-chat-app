@@ -44,7 +44,7 @@ class App extends React.Component {
       >
         <div className="navbar">
           <button className="open-channel-button" onClick={() => this.onSetSidebarOpen(true)}>
-            Open sidebar
+            <i className="fas fa-bars"></i>
           </button>
         </div>
         <MessageList selectedChannel={this.props.match.params.channel} />

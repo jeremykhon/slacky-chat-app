@@ -14,9 +14,9 @@ class ChannelList extends Component {
 
   renderChannel = (channel) => {
     return (
-      <div key={channel} >
+      <div className="channel-container" key={channel} >
         <Link className="channel-link" to={`/channels/${channel}`} onClick={() => this.handleClick(channel)}>
-          #{channel}
+          # {channel}
         </Link>
       </div> 
     );
