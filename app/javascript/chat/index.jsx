@@ -9,6 +9,8 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import App from './containers/app';
 import MessagesReducer from './reducers/messages_reducer';
+import ChannelsReducer from './reducers/channels_reducer';
+
 
 // internal modules
 const chatContainer = document.getElementById('app');
@@ -20,7 +22,7 @@ const initialState = {
 
 const reducers = combineReducers({
   messages: MessagesReducer,
-  channels: (state = null, action) => state
+  channels: ChannelsReducer
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; 

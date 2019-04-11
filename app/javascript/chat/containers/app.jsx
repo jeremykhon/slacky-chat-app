@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import MessageList from './message_list';
 import ChannelList from './channel_list';
 import Sidebar from "react-sidebar";
+import logo from '../../../assets/images/logo.png';
 
 const mql = window.matchMedia(`(min-width: 800px)`);
  
@@ -46,6 +47,7 @@ class App extends React.Component {
           <button className="open-channel-button" onClick={() => this.onSetSidebarOpen(true)}>
             <i className="fas fa-bars"></i>
           </button>
+          <img src={logo} className="logo" alt="Logo" />
         </div>
         <MessageList selectedChannel={this.props.match.params.channel} />
       </Sidebar>
