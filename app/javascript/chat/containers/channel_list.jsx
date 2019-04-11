@@ -8,7 +8,8 @@ import { Link } from 'react-router-dom';
 class ChannelList extends Component {
   handleClick = (channel) => {
     // this.props.selectChannel()
-    this.props.fetchMessages(channel)
+    this.props.toggleSideBar(!this.props.sidebarState);
+    this.props.fetchMessages(channel);
   }
 
   renderChannel = (channel) => {
@@ -24,9 +25,12 @@ class ChannelList extends Component {
   render() {
     const { channels } = this.props;
     return (
-      <div className="col-2 left-container">
-        <div className="channel-label">Channels</div>
-        {channels.map(channel => this.renderChannel(channel))}
+      <div>
+        <div className="navbar"></div>
+        <div className="channels">
+          <div className="channel-label">Channels</div>
+          {channels.map(channel => this.renderChannel(channel))}
+        </div>
       </div>
     );
   }

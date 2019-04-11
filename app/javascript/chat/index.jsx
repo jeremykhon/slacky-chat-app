@@ -7,7 +7,7 @@ import logger from 'redux-logger'
 import ReduxPromise from 'redux-promise';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import App from './components/app';
+import App from './containers/app';
 import MessagesReducer from './reducers/messages_reducer';
 
 // internal modules

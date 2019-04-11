@@ -11,11 +11,11 @@ body {
   }
 }
 
-.left-container {
+.channels {
   height: calc(100vh - 56px);
   background-color: #2E3136;
   color: white;
-  padding: 10px 18px;
+  padding: 10px;
 
   .channel-label {
     font-size: 16px;
@@ -110,4 +110,9 @@ body {
   }
 } 
 
+@media only screen and (min-width: 800px) {
+  .open-channel-button {
+      display: none;
+  }
+}
 

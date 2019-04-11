@@ -147,7 +147,7 @@ class MessageList extends Component {
   render() {
     const { messages } = this.props;
     return (
-      <div className="col-10 right-container">
+      <div className="col-12 right-container">
         <div className="channel-title">{`#${this.props.selectedChannel}`}</div>
         <div className="message-list" ref={(list) => { this.list = list; }}>
           {this.groupByDate(messages)}
