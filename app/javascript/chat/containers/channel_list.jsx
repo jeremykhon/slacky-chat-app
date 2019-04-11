@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { selectChannel, fetchMessages, createChannel, fetchChannels } from '../actions/index';
+import { selectChannel, fetchMessages, createChannel, appendChannel } from '../actions/index';
 import { Link } from 'react-router-dom';
 import Modal from 'react-modal';
 import ChannelForm from './channel_form';
@@ -40,6 +40,22 @@ class ChannelList extends Component {
     };
   }
 
+  componentDidMount() {
+    this.subscribeActionCable(this.props);
+  }
+
+
+  subscribeActionCable = (props) => {
+    App[`channel_all_channel`] = App.cable.subscriptions.create(
+      { channel: 'AllChannelsChannel' },
+      {
+        received: (channel) => {
+          this.props.appendChannel(channel);
+        }
+      }
+    );
+  }
+
   openModal = () => {
     this.props.toggleSideBar(!this.props.sidebarState);
     this.setState({modalIsOpen: true});
@@ -52,14 +68,14 @@ class ChannelList extends Component {
   handleClick = (channel) => {
     // this.props.selectChannel()
     this.props.toggleSideBar(!this.props.sidebarState);
-    this.props.fetchMessages(channel);
+    this.props.fetchMessages(channel.name);
   }
 
-  renderChannel = (channel, index) => {
+  renderChannel = (channel) => {
     return (
-      <div className="channel-container" key={index} >
-        <Link className="channel-link" to={`/channels/${channel}`} onClick={() => this.handleClick(channel)}>
-          # {channel}
+      <div className="channel-container" key={channel.id} >
+        <Link className="channel-link" to={`/channels/${channel.name}`} onClick={() => this.handleClick(channel)}>
+          # {channel.name}
         </Link>
       </div> 
     );
@@ -75,7 +91,7 @@ class ChannelList extends Component {
             <div className="channel-label">Channels</div>
             <i className="fas fa-plus-circle" onClick={this.openModal} style={{cursor: 'pointer'}}></i>
           </div>
-          {channels.map((channel, index) => this.renderChannel(channel, index))}
+          {channels.map(channel => this.renderChannel(channel))}
           <Modal
           isOpen={this.state.modalIsOpen}
           onRequestClose={this.closeModal}
@@ -99,7 +115,7 @@ const mapStateToProps = (state) => {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
-    { selectChannel, fetchMessages, createChannel, fetchChannels },
+    { selectChannel, fetchMessages, createChannel, appendChannel },
     dispatch
   );
 }

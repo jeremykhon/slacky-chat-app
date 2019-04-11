@@ -15,7 +15,7 @@ const chatContainer = document.getElementById('app');
 
 const initialState = {
   messages: [],
-  channels: JSON.parse(chatContainer.dataset.channels).map(c => c.name)
+  channels: JSON.parse(chatContainer.dataset.channels)
 };
 
 const reducers = combineReducers({

@@ -145,9 +145,10 @@ body {
 
 .channel-form {
   .create-channel-title {
-    margin-bottom: 20px;
+    font-size: 16px;
+    margin-bottom: 30px;
   }
-  
+
   .channel-form-input {
     padding: 10px;
     width: 100%;
@@ -155,7 +156,7 @@ body {
     border: none;
     background-color: #494A53;
     color: rgb(245, 245, 245);
-    margin-bottom: 20px;
+    margin-bottom: 30px;
   }
 
   .channel-form-buttons-container {
@@ -170,7 +171,6 @@ body {
       border: solid 1px rgba(255,255,255,0.2);
       background-color: #212326;
       color: rgb(245, 245, 245);
-      font-size: 14px;
       font-weight: bold;
     }
   
@@ -182,7 +182,6 @@ body {
       border: none;
       background-color: #D23333;
       color: rgb(245, 245, 245);
-      font-size: 14px;
       font-weight: bold;
     }
   }
