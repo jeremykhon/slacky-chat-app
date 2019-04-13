@@ -25,6 +25,12 @@
     "warning": "^4.0.3"
   },
   "devDependencies": {
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "~2.16.0",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.11.0",
     "redux-logger": "^3.0.6",
     "webpack-dev-server": "^3.3.0"
   }
