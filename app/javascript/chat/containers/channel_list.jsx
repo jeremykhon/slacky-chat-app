@@ -2,12 +2,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { selectChannel, fetchMessages, createChannel, appendChannel } from '../actions/index';
-import { Link } from 'react-router-dom';
 import Modal from 'react-modal';
+import { Link } from 'react-router-dom';
 import ChannelForm from './channel_form';
+import {
+  selectChannel, fetchMessages, createChannel, appendChannel,
+} from '../actions/index';
 
-const style={
+const style = {
   overlay: {
     position: 'fixed',
     top: 0,
@@ -28,15 +30,15 @@ const style={
     backgroundColor: '#212326',
     border: 'none',
     padding: '30px 25px'
-  }
-}
+  },
+};
 
 class ChannelList extends Component {
   constructor() {
     super();
 
     this.state = {
-      modalIsOpen: false
+      modalIsOpen: false,
     };
   }
 
@@ -50,32 +52,33 @@ class ChannelList extends Component {
       { channel: 'AllChannelsChannel' },
       {
         received: (channel) => {
-          this.props.appendChannel(channel);
-        }
-      }
+          props.appendChannel(channel);
+        },
+      },
     );
   }
 
-  openModal = () => {
-    this.props.toggleSideBar(!this.props.sidebarState);
-    this.setState({modalIsOpen: true});
+  openModal = (props) => {
+    props.toggleSideBar(!props.sidebarState);
+    this.setState({ modalIsOpen: true });
   }
 
   closeModal = () => {
-    this.setState({modalIsOpen: false});
+    this.setState({ modalIsOpen: false });
   }
 
-  handleClick = (channel) => {
+  handleClick = (props, channel) => {
     // this.props.selectChannel()
-    this.props.toggleSideBar(!this.props.sidebarState);
-    this.props.fetchMessages(channel.name);
+    props.toggleSideBar(!props.sidebarState);
+    props.fetchMessages(channel.name);
   }
 
   renderChannel = (channel) => {
     return (
       <div className="channel-container" key={channel.id} >
         <Link className="channel-link" to={`/channels/${channel.name}`} onClick={() => this.handleClick(channel)}>
-          # {channel.name}
+          #
+          {channel.name}
         </Link>
       </div> 
     );
@@ -93,13 +96,13 @@ class ChannelList extends Component {
           </div>
           {channels.map(channel => this.renderChannel(channel))}
           <Modal
-          isOpen={this.state.modalIsOpen}
-          onRequestClose={this.closeModal}
-          contentLabel="Example Modal"
-          style={style}
-          ariaHideApp={false}
-          >    
-            <ChannelForm closeModal={this.closeModal}/>
+            isOpen={this.state.modalIsOpen}
+            onRequestClose={this.closeModal}
+            contentLabel="Example Modal"
+            style={style}
+            ariaHideApp={false}
+          >
+            <ChannelForm closeModal={this.closeModal} />
           </Modal>
         </div>
       </div>
@@ -115,8 +118,10 @@ const mapStateToProps = (state) => {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
-    { selectChannel, fetchMessages, createChannel, appendChannel },
-    dispatch
+    {
+      selectChannel, fetchMessages, createChannel, appendChannel,
+    },
+    dispatch,
   );
 }
 
