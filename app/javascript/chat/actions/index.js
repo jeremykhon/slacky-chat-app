@@ -1,19 +1,19 @@
 /* eslint-disable import/prefer-default-export */
 // TODO: add and export your own actions
-export const FETCH_MESSAGES = "FETCH_MESSAGES";
-export const MESSAGE_POSTED = "MESSAGE_POSTED";
-export const SELECT_CHANNEL = "SELECT_CHANNEL";
-export const FETCH_CHANNEL = "FETCH_CHANNEL";
-export const CHANNEL_CREATED = "CHANNEL_CREATED";
+export const FETCH_MESSAGES = 'FETCH_MESSAGES';
+export const MESSAGE_POSTED = 'MESSAGE_POSTED';
+export const SELECT_CHANNEL = 'SELECT_CHANNEL';
+export const FETCH_CHANNELS = 'FETCH_CHANNELS';
+export const CHANNEL_CREATED = 'CHANNEL_CREATED';
 
 const BASE_URL = '/api/v1';
 
 export function fetchMessages(channel) {
-  const promise = fetch(`${BASE_URL}/channels/${channel}/messages`, { credentials: "same-origin" })
+  const promise = fetch(`${BASE_URL}/channels/${channel}/messages`, { credentials: 'same-origin' })
     .then(response => response.json());
   return {
     type: FETCH_MESSAGES,
-    payload: promise
+    payload: promise,
   };
 }
 
@@ -25,29 +25,29 @@ export function createMessage(channel, content) {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      'X-CSRF-Token': csrfToken
+      'X-CSRF-Token': csrfToken,
     },
     body: JSON.stringify(body)
   }).then(response => response.json());
 
   return {
     type: MESSAGE_POSTED,
-    payload: promise
+    payload: promise,
   };
 }
 
 
 export function fetchChannels() {
-  const promise = fetch(`${BASE_URL}/channels`, { credentials: "same-origin" })
+  const promise = fetch(`${BASE_URL}/channels`, { credentials: 'same-origin' })
     .then(response => response.json());
   return {
     type: FETCH_CHANNELS,
-    payload: promise
+    payload: promise,
   };
 }
 
 
-export function createChannel(name, callback) {
+export function createChannel(name) {
   const csrfToken = document.querySelector('meta[name="csrf-token"]').attributes.content.value;
   const body = { name };
   const promise = fetch(`${BASE_URL}/channels`, {
@@ -55,33 +55,33 @@ export function createChannel(name, callback) {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      'X-CSRF-Token': csrfToken
+      'X-CSRF-Token': csrfToken,
     },
-    body: JSON.stringify(body)
+    body: JSON.stringify(body),
   }).then(response => response.json());
   return {
     type: CHANNEL_CREATED,
-    payload: promise
+    payload: promise,
   };
 }
 
 export function selectChannel() {
   return {
     type: SELECT_CHANNEL,
-    payload: []
+    payload: [],
   };
 }
 
 export function appendMessage(message) {
   return {
     type: MESSAGE_POSTED,
-    payload: message
+    payload: message,
   };
 }
 
 export function appendChannel(channel) {
   return {
     type: CHANNEL_CREATED,
-    payload: channel
+    payload: channel,
   };
 }

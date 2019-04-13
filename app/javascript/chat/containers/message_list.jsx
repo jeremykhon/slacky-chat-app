@@ -37,19 +37,19 @@ class MessageList extends Component {
           if (message.channel === props.selectedChannel) {
             this.fetchMessages(this.props.selectedChannel);
           }
-        }
-      }
+        },
+      },
     );
   }
 
   strToRGB = (str) => {
-    var hash = 0;
-    for (var i = 0; i < str.length; i++) {
-       hash = str.charCodeAt(i) + ((hash << 5) - hash);
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+      hash = str.charCodeAt(i) + ((hash << 5) - hash);
     }
-    var c = (hash & 0x00FFFFFF)
-        .toString(16)
-        .toUpperCase();
+    const c = (hash & 0x00FFFFFF)
+      .toString(16)
+      .toUpperCase();
     return "#" + "00000".substring(0, 6 - c.length) + c;
   }
   
@@ -78,7 +78,7 @@ class MessageList extends Component {
         </div>
         {nameChunk.map(message => <Message message={message} key={message.id} />)}
       </div>
-    )
+    );
   }
 
   groupByName = (dayChunk) => {
@@ -94,14 +94,14 @@ class MessageList extends Component {
       } else {
         temp.push(message);
       }
-    })
-    groupedByName.push(temp)
-    
+    });
+    groupedByName.push(temp);
+
     return groupedByName.map((nameChunk, index) => {
       return (
         this.renderNameChunk(nameChunk, index)   
-      )
-    })
+      );
+    });
   }
 
   renderDateChunk = (dayChunk, index) => {
@@ -113,12 +113,11 @@ class MessageList extends Component {
           </div>
           {this.groupByName(dayChunk)}
         </div>
-      )
-    } else {
-      return (
-        <div key="no-messages"></div>
-      )
+      );
     }
+    return (
+      <div key="no-messages" />
+    );
   }
 
   groupByDate = (messages) => {
@@ -134,14 +133,14 @@ class MessageList extends Component {
       } else {
         temp.push(message);
       }
-    })
-    groupedByDate.push(temp)
-    
+    });
+    groupedByDate.push(temp);
+
     return groupedByDate.map((dayChunk, index) => {
       return (
         this.renderDateChunk(dayChunk, index)   
-      )
-    })
+      );
+    });
   }
 
   render() {
@@ -152,7 +151,7 @@ class MessageList extends Component {
         <div className="message-list" ref={(list) => { this.list = list; }}>
           {this.groupByDate(messages)}
         </div>
-        {<MessageForm selectedChannel={this.props.selectedChannel}/>}
+        {<MessageForm selectedChannel={this.props.selectedChannel} />}
       </div>
     );
   }
@@ -167,7 +166,7 @@ const mapStateToProps = (state) => {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
     { fetchMessages, appendMessage },
-    dispatch
+    dispatch,
   );
 }
 

@@ -59,7 +59,7 @@ class ChannelList extends Component {
   }
 
   openModal = (props) => {
-    props.toggleSideBar(!props.sidebarState);
+    this.props.toggleSideBar(!props.sidebarState);
     this.setState({ modalIsOpen: true });
   }
 
@@ -67,18 +67,17 @@ class ChannelList extends Component {
     this.setState({ modalIsOpen: false });
   }
 
-  handleClick = (props, channel) => {
+  handleClick = (channel) => {
     // this.props.selectChannel()
-    props.toggleSideBar(!props.sidebarState);
-    props.fetchMessages(channel.name);
+    this.props.toggleSideBar(!this.props.sidebarState);
+    this.props.fetchMessages(channel.name);
   }
 
   renderChannel = (channel) => {
     return (
       <div className="channel-container" key={channel.id} >
         <Link className="channel-link" to={`/channels/${channel.name}`} onClick={() => this.handleClick(channel)}>
-          #
-          {channel.name}
+          # {channel.name}
         </Link>
       </div> 
     );
