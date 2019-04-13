@@ -121,8 +121,8 @@ class MessageList extends Component {
   }
 
   groupByDate = (messages) => {
-    const groupedByDate = []
-    let temp = []
+    const groupedByDate = [];
+    let temp = [];
     messages.forEach((message, index) => {
       if (index === 0) {
         temp.push(message);

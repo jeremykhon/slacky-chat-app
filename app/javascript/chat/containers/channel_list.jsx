@@ -8,6 +8,7 @@ import ChannelForm from './channel_form';
 import {
   selectChannel, fetchMessages, createChannel, appendChannel,
 } from '../actions/index';
+import { logout } from '../api'
 
 const style = {
   overlay: {
@@ -79,19 +80,19 @@ class ChannelList extends Component {
         <Link className="channel-link" to={`/channels/${channel.name}`} onClick={() => this.handleClick(channel)}>
           # {channel.name}
         </Link>
-      </div> 
+      </div>
     );
   }
 
   render() {
     const { channels } = this.props;
     return (
-      <div>
-        <div className="navbar"></div>
+      <div className="left-container">
+        <div className="navbar" />
         <div className="channels">
           <div className="channel-label-container">
             <div className="channel-label">Channels</div>
-            <i className="fas fa-plus-circle" onClick={this.openModal} style={{cursor: 'pointer'}}></i>
+            <i className="fas fa-plus-circle" onClick={this.openModal} style={{cursor: 'pointer'}} />
           </div>
           {channels.map(channel => this.renderChannel(channel))}
           <Modal
@@ -103,6 +104,9 @@ class ChannelList extends Component {
           >
             <ChannelForm closeModal={this.closeModal} />
           </Modal>
+        </div>
+        <div className="logout">
+          <button className="logout-button" type="button" onClick={logout}>Sign out</button>
         </div>
       </div>
     );

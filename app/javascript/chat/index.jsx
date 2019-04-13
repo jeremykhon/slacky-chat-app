@@ -3,24 +3,24 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-import logger from 'redux-logger'
+import logger from 'redux-logger';
 import ReduxPromise from 'redux-promise';
 import { Router, Route, Switch } from 'react-router-dom';
 import App from './containers/app';
 import MessagesReducer from './reducers/messages_reducer';
 import ChannelsReducer from './reducers/channels_reducer';
-import history from './history'
+import history from './history';
 // internal modules
 const chatContainer = document.getElementById('app');
 
 const initialState = {
   messages: [],
-  channels: JSON.parse(chatContainer.dataset.channels)
+  channels: JSON.parse(chatContainer.dataset.channels),
 };
 
 const reducers = combineReducers({
   messages: MessagesReducer,
-  channels: ChannelsReducer
+  channels: ChannelsReducer,
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; 
@@ -36,5 +36,5 @@ ReactDOM.render(
       </Switch>
     </Router>
   </Provider>,
-  chatContainer
+  chatContainer,
 );

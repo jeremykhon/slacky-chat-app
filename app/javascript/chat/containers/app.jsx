@@ -11,7 +11,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       sidebarDocked: mql.matches,
-      sidebarOpen: false
+      sidebarOpen: false,
     };
  
     this.mediaQueryChanged = this.mediaQueryChanged.bind(this);
