@@ -4,7 +4,7 @@
       <div class="form-container">
         <div class="form-logo-container text-center">
           <%= image_tag("logo.png", class: "form-logo")  %>
-          <p>"Kind of like slack or discord"</p>
+          <p>Kind of like slack or discord</p>
         </div>
         <div class="form">
           <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -13,7 +13,7 @@
                           label: 'Email',
                           required: false,
                           autofocus: true,
-                          placeholder: "hello@gmail.com",
+                          placeholder: "bighead@hooli.com",
                           input_html: { autocomplete: "email" } %>
               <%= f.input :password,
                           required: false,
