@@ -8,7 +8,7 @@ import ChannelForm from './channel_form';
 import {
   selectChannel, fetchMessages, createChannel, appendChannel,
 } from '../actions/index';
-import { logout } from '../api'
+import { logout } from '../api';
 
 const style = {
   overlay: {
@@ -30,7 +30,7 @@ const style = {
     transform: 'translate(-50%, -50%)',
     backgroundColor: '#212326',
     border: 'none',
-    padding: '30px 25px'
+    padding: '30px 25px',
   },
 };
 
@@ -59,8 +59,8 @@ class ChannelList extends Component {
     );
   }
 
-  openModal = (props) => {
-    this.props.toggleSideBar(!props.sidebarState);
+  openModal = () => {
+    this.props.toggleSideBar(!this.props.sidebarState);
     this.setState({ modalIsOpen: true });
   }
 

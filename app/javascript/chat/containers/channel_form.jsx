@@ -27,7 +27,7 @@ class ChannelForm extends Component {
     if (this.state.value) {
       this.props.createChannel(this.state.value);
       this.props.closeModal();
-      history.push(`/users/${this.state.value}`);
+      history.push(`/channels/${this.state.value}`);
     }
   }
 
