@@ -197,7 +197,13 @@ body {
     border: none;
     background-color: #494A53;
     color: rgb(245, 245, 245);
-    margin-bottom: 30px;
+    margin-bottom: 5px;
+  }
+
+  .invalid-channel-name {
+    margin-bottom: 20px;
+    font-size: 12px;
+    color: #D23333;
   }
 
   .channel-form-buttons-container {

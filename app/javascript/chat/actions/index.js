@@ -7,7 +7,6 @@ export const FETCH_CHANNELS = 'FETCH_CHANNELS';
 export const CHANNEL_CREATED = 'CHANNEL_CREATED';
 export const CHANNEL_APPENDED = 'CHANNEL_APPENDED';
 
-
 const BASE_URL = '/api/v1';
 
 export function fetchMessages(channel) {
