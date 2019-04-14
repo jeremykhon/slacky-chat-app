@@ -52,7 +52,7 @@ class MessageList extends Component {
       .toUpperCase();
     return "#" + "00000".substring(0, 6 - c.length) + c;
   }
-  
+
   calcDate = (message) => {
     if (message === undefined) {
       return null;
@@ -146,7 +146,7 @@ class MessageList extends Component {
   render() {
     const { messages } = this.props;
     return (
-      <div className="col-12 right-container">
+      <div className="messages-container">
         <div className="channel-title">{`#${this.props.selectedChannel}`}</div>
         <div className="message-list" ref={(list) => { this.list = list; }}>
           {this.groupByDate(messages)}

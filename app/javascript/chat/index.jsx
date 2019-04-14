@@ -14,6 +14,12 @@ import history from './history';
 // internal modules
 const chatContainer = document.getElementById('app');
 
+window.addEventListener('resize', () => {
+  // We execute the same script as before
+  let vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+});
+
 const initialState = {
   messages: [],
   channels: JSON.parse(chatContainer.dataset.channels),

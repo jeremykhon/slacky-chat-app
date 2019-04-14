@@ -44,13 +44,15 @@ class App extends React.Component {
         transitions={true}
         styles={{ sidebar: { background: "white" } }}
       >
-        <div className="navbar">
-          <button type="button" className="open-channel-button" onClick={() => this.onSetSidebarOpen(true)}>
-            <i className="fas fa-bars" />
-          </button>
-          <img src={logo} className="logo" alt="Logo" />
+        <div className="right-container">
+          <div className="navbar">
+            <button type="button" className="open-channel-button" onClick={() => this.onSetSidebarOpen(true)}>
+              <i className="fas fa-bars" />
+            </button>
+            <img src={logo} className="logo" alt="Logo" />
+          </div>
+          <MessageList selectedChannel={this.props.match.params.channel} />
         </div>
-        <MessageList selectedChannel={this.props.match.params.channel} />
       </Sidebar>
     );
   }
