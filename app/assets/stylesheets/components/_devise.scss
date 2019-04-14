@@ -24,7 +24,7 @@
   padding: 10px 17px;
   width: 100%;
   border-radius: 10px;
-  box-shadow: 0 4px 1px rgba(0,0,0,0.2);
+  box-shadow: 0 6px 1px rgba(0,0,0,0.2);
   border: none;
   background-color: #D23333;
   color: rgb(245, 245, 245);
@@ -33,6 +33,7 @@
   
   &:hover {
     box-shadow: none;
+    color: #2E3136;
   }
 
 
