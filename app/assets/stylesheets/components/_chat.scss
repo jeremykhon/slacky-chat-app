@@ -134,7 +134,7 @@ body {
 
 .message-container {
   margin-bottom: 5px;
-  padding: 0px 10px;
+  margin-left: 10px;
   display: flex;
   align-items: flex-end;
 
@@ -146,7 +146,8 @@ body {
   .message-timestamp{
     color: grey;
     font-size: 11px;
-    min-width: 70px;
+    min-width: 50px;
+    text-align: right;
   }
 } 
 

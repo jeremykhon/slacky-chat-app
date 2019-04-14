@@ -15,20 +15,20 @@ ActiveRecord::Base.connection.tables.each do |t|
   ActiveRecord::Base.connection.reset_pk_sequence!(t)
 end
 
-names = %w(general hongkong hello)
-nicknames = %w(Jeremy Maya monsieurpaillard krokrob Eschults)
+names = %w(general random)
+nicknames = %w(Richard Gavin Dinish Gilfoyle Bighead)
 
 channels = names.map do |name|
   Channel.find_or_create_by(name: name)
 end
 
 users = nicknames.map do |nickname|
-  User.create(email: "#{nickname.downcase}@lewagon.com", nickname: nickname, password: "testtest")
+  User.create(email: "#{nickname.downcase}@slacky.com", nickname: nickname, password: "testtest")
 end
 
 20.times do
   random_user = users.sample
-  Message.create! user: random_user, channel: channels.sample, nickname: random_user.nickname, content: Faker::TvShows::HowIMetYourMother.quote
+  Message.create! user: random_user, channel: channels.sample, nickname: random_user.nickname, content: Faker::TvShows::SiliconValley.quote
 end
 
 puts 'Channels:'
