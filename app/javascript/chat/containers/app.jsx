@@ -58,15 +58,4 @@ class App extends React.Component {
   }
 }
 
-// const App = (props) => {
-//   return (
-//     <div className="container-fluid">
-//       <div className="row app">
-//         <ChannelList selectedChannel={props.match.params.channel} />
-//         <MessageList selectedChannel={props.match.params.channel} />
-//       </div>
-//     </div>
-//   );
-// };
-
 export default App;
