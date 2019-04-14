@@ -5,6 +5,8 @@ export const MESSAGE_POSTED = 'MESSAGE_POSTED';
 export const SELECT_CHANNEL = 'SELECT_CHANNEL';
 export const FETCH_CHANNELS = 'FETCH_CHANNELS';
 export const CHANNEL_CREATED = 'CHANNEL_CREATED';
+export const CHANNEL_APPENDED = 'CHANNEL_APPENDED';
+
 
 const BASE_URL = '/api/v1';
 
@@ -81,7 +83,7 @@ export function appendMessage(message) {
 
 export function appendChannel(channel) {
   return {
-    type: CHANNEL_CREATED,
+    type: CHANNEL_APPENDED,
     payload: channel,
   };
 }
