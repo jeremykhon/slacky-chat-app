@@ -4,7 +4,8 @@
       <div class="form-container">
         <div class="form-logo-container text-center">
           <%= image_tag("logo.png", class: "form-logo")  %>
-          <p>Kind of like slack or discord</p>
+          <p>A chat app made with react, redux, and rails</p>
+          <%= button_to "Login as guest", guest_signup_path, class: "guest-login-button" %>
         </div>
         <div class="form">
           <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
