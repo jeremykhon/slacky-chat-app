@@ -17,7 +17,7 @@ class MessageList extends Component {
   componentWillReceiveProps(nextProps) { // For after switching channels
     if (this.props.selectedChannel != nextProps.selectedChannel) {
       this.subscribeActionCable(nextProps);
-      App[`channel_${this.props.selectedChannel}`].unsubscribe()
+      App[`channel_${this.props.selectedChannel}`].unsubscribe();
     }
   }
 
@@ -58,7 +58,7 @@ class MessageList extends Component {
       return null;
     }
     const date = new Date(message.created_at).toLocaleDateString([], {year: '2-digit', month:'2-digit', day:'2-digit'})
-    return date
+    return date;
   }
 
   calcLongDate = (message) => {
@@ -66,7 +66,7 @@ class MessageList extends Component {
       return null;
     }
     const date = new Date(message.created_at).toLocaleDateString([], {year: '2-digit', month:'short', day:'2-digit', weekday:'long'})
-    return date
+    return date;
   }
 
   renderNameChunk = (nameChunk, index) => {
@@ -99,7 +99,7 @@ class MessageList extends Component {
 
     return groupedByName.map((nameChunk, index) => {
       return (
-        this.renderNameChunk(nameChunk, index)   
+        this.renderNameChunk(nameChunk, index)
       );
     });
   }

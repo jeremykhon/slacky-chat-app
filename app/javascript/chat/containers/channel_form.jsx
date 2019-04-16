@@ -21,7 +21,7 @@ class ChannelForm extends Component {
     this.setState({ value: event.target.value });
   }
 
-  focusForm = () => { 
+  focusForm = () => {
     this.form.focus();
   }
 
