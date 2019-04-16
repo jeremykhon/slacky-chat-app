@@ -16,7 +16,7 @@ ActiveRecord::Base.connection.tables.each do |t|
 end
 
 names = %w(general random)
-nicknames = %w(Richard Gavin Dinish Gilfoyle Bighead)
+nicknames = %w(Tyrion Cersei Daenerys)
 
 channels = names.map do |name|
   Channel.find_or_create_by(name: name)
@@ -26,9 +26,9 @@ users = nicknames.map do |nickname|
   User.create(email: "#{nickname.downcase}@slacky.com", nickname: nickname, password: "testtest")
 end
 
-20.times do
+10.times do
   random_user = users.sample
-  Message.create! user: random_user, channel: channels.sample, nickname: random_user.nickname, content: Faker::TvShows::SiliconValley.quote
+  Message.create!(user: random_user, channel: channels.sample, nickname: random_user.nickname, content: Faker::TvShows::GameOfThrones.quote)
 end
 
 puts 'Channels:'
