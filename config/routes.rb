@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       resources :channels, only: [ :index, :create ] do
         resources :messages, only: [ :index, :create ]
       end
+      resources :gifs, only: :index
     end
   end
   
