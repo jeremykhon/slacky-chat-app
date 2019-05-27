@@ -22,6 +22,7 @@ window.addEventListener('resize', () => {
 const initialState = {
   messages: [],
   channels: JSON.parse(chatContainer.dataset.channels),
+  gifs: [],
 };
 
 const reducers = combineReducers({

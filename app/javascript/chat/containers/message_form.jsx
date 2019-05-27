@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { createMessage } from '../actions/index';
+import { createMessage, fetchGifs } from '../actions/index';
 
 class MessageForm extends Component {
   constructor(props) {
@@ -14,11 +14,16 @@ class MessageForm extends Component {
   }
 
   handleChange = (event) => {
-    this.setState({ value: event.target.value });
+    this.setState({ value: event.target.value }, this.fetchGifs);
   }
 
   focusForm = () => {
     this.form.focus();
+  }
+
+  fetchGifs = () => {
+    const { fetchGifs } = this.props;
+    fetchGifs(this.state.value);
   }
 
   handleSubmit = (event) => {
@@ -47,8 +52,8 @@ const mapStateToProps = (state) => {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
-    { createMessage },
-    dispatch
+    { createMessage, fetchGifs },
+    dispatch,
   );
 }
 

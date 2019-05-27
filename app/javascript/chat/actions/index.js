@@ -6,6 +6,7 @@ export const SELECT_CHANNEL = 'SELECT_CHANNEL';
 export const FETCH_CHANNELS = 'FETCH_CHANNELS';
 export const CHANNEL_CREATED = 'CHANNEL_CREATED';
 export const CHANNEL_APPENDED = 'CHANNEL_APPENDED';
+export const FETCH_GIFS = 'FETCH_GIFS';
 
 const BASE_URL = '/api/v1';
 
@@ -14,6 +15,15 @@ export function fetchMessages(channel) {
     .then(response => response.json());
   return {
     type: FETCH_MESSAGES,
+    payload: promise,
+  };
+}
+
+export function fetchGifs(search) {
+  const promise = fetch(`${BASE_URL}/gifs?search=${search}`, { credentials: 'same-origin' })
+    .then(response => response.json());
+  return {
+    type: FETCH_GIFS,
     payload: promise,
   };
 }
