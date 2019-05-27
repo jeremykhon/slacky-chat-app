@@ -10,6 +10,7 @@ import { Router, Route, Switch } from 'react-router-dom';
 import App from './containers/app';
 import MessagesReducer from './reducers/messages_reducer';
 import ChannelsReducer from './reducers/channels_reducer';
+import GifsReducer from './reducers/gifs_reducer';
 import history from './history';
 // internal modules
 const chatContainer = document.getElementById('app');
@@ -26,6 +27,7 @@ const initialState = {
 const reducers = combineReducers({
   messages: MessagesReducer,
   channels: ChannelsReducer,
+  gifs: GifsReducer,
 });
 
 const middlewares = [ReduxPromise];
