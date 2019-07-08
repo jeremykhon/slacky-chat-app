@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { createChannel, fetchMessages } from '../actions/index';
-import history from '../history';
+import history from '../utils/history';
 
 class ChannelForm extends Component {
   constructor(props) {

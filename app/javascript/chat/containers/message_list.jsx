@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import moment from 'moment';
 import { fetchMessages, appendMessage } from '../actions/index';
 import Message from '../components/message';
 import MessageForm from './message_form';
+import strToRGB from '../utils/str_to_rgb';
 
 class MessageList extends Component {
   componentWillMount() {

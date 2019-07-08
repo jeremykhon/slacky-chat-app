@@ -8,9 +8,7 @@ import ChannelForm from './channel_form';
 import {
   selectChannel, fetchMessages, createChannel, appendChannel,
 } from '../actions/index';
-import { logout } from '../api';
-
-Modal.setAppElement('#root');
+import { logout } from '../utils/api';
 
 const style = {
   overlay: {

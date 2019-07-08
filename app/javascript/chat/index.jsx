@@ -11,7 +11,7 @@ import App from './containers/app';
 import MessagesReducer from './reducers/messages_reducer';
 import ChannelsReducer from './reducers/channels_reducer';
 import GifsReducer from './reducers/gifs_reducer';
-import history from './history';
+import history from './utils/history';
 // internal modules
 const chatContainer = document.getElementById('app');
 
