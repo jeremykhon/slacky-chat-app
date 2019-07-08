@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux';
 import { fetchMessages, appendMessage } from '../actions/index';
 import Message from '../components/message';
 import MessageForm from './message_form';
-import GifsContainer from './gifs_container';
 
 class MessageList extends Component {
   componentWillMount() {
@@ -130,7 +129,6 @@ class MessageList extends Component {
         <div className="message-list" ref={(list) => { this.list = list; }}>
           {this.groupByDate(messages)}
         </div>
-        <GifsContainer />
         <MessageForm selectedChannel={selectedChannel} />
       </div>
     );

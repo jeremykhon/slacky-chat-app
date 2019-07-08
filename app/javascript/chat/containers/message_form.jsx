@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import debounce from '../utils/debounce';
 import { createMessage, fetchGifs } from '../actions/index';
+import GifsContainer from './gifs_container';
 
 class MessageForm extends Component {
   constructor(props) {
     super(props);
     this.state = { value: '' };
+    this.debouncedFetchGifs = debounce(this.props.fetchGifs, 500);
   }
 
   componentDidMount() {
@@ -14,16 +17,11 @@ class MessageForm extends Component {
   }
 
   handleChange = (event) => {
-    this.setState({ value: event.target.value }, this.fetchGifs);
+    this.setState({ value: event.target.value }, () => this.debouncedFetchGifs(this.state.value));
   }
 
   focusForm = () => {
     this.form.focus();
-  }
-
-  fetchGifs = () => {
-    const { fetchGifs } = this.props;
-    fetchGifs(this.state.value);
   }
 
   handleSubmit = (event) => {
@@ -36,10 +34,13 @@ class MessageForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit} className="message-form noSelect">
-        <input className="message-form-input form-control noSelect" type="text" value={this.state.value} placeholder={`Message #${this.props.selectedChannel}`} onChange={this.handleChange} ref={(form) => { this.form = form; }} />
-        <button className="message-form-button noSelect" type="submit">Send</button>
-      </form>
+      <div>
+        <GifsContainer />
+        <form onSubmit={this.handleSubmit} className="message-form noSelect">
+          <input className="message-form-input form-control noSelect" type="text" value={this.state.value} placeholder={`Message #${this.props.selectedChannel}`} onChange={this.handleChange} ref={(form) => { this.form = form; }} />
+          <button className="message-form-button noSelect" type="submit">Send</button>
+        </form>
+      </div>
     );
   }
 }
