@@ -10,6 +10,8 @@ import {
 } from '../actions/index';
 import { logout } from '../api';
 
+Modal.setAppElement('#root');
+
 const style = {
   overlay: {
     position: 'fixed',
