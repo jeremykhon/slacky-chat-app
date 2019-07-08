@@ -27,7 +27,8 @@ class MessageList extends Component {
   }
 
   fetchMessages = () => {
-    this.props.fetchMessages(this.props.selectedChannel);
+    const { fetchMessages, selectedChannel } = this.props;
+    fetchMessages(selectedChannel);
   }
 
   subscribeActionCable = (props) => {
@@ -36,42 +37,23 @@ class MessageList extends Component {
       {
         received: (message) => {
           if (message.channel === props.selectedChannel) {
-            this.fetchMessages(this.props.selectedChannel);
+            this.props.appendMessage(message);
           }
         },
       },
     );
   }
 
-  strToRGB = (str) => {
-    let hash = 0;
-    for (let i = 0; i < str.length; i++) {
-      hash = str.charCodeAt(i) + ((hash << 5) - hash);
-    }
-    const c = (hash & 0x00FFFFFF)
-      .toString(16)
-      .toUpperCase();
-    return "#" + "00000".substring(0, 6 - c.length) + c;
-  }
-
   calcDate = (message) => {
     if (message === undefined) {
       return null;
     }
-    const date = new Date(message.created_at).toLocaleDateString([], {year: '2-digit', month:'2-digit', day:'2-digit'})
-    return date;
-  }
-
-  calcLongDate = (message) => {
-    if (message === undefined) {
-      return null;
-    }
-    const date = new Date(message.created_at).toLocaleDateString([], {year: '2-digit', month:'short', day:'2-digit', weekday:'long'})
+    const date = moment(message.created_at).format('YYYYMMDD');
     return date;
   }
 
   renderNameChunk = (nameChunk, index) => {
-    const color = this.strToRGB(nameChunk[0].nickname);
+    const color = strToRGB(nameChunk[0].nickname);
     return (
       <div key={index}>
         <div style={{ color }} className="name-divider">
@@ -98,11 +80,9 @@ class MessageList extends Component {
     });
     groupedByName.push(temp);
 
-    return groupedByName.map((nameChunk, index) => {
-      return (
-        this.renderNameChunk(nameChunk, index)
-      );
-    });
+    return groupedByName.map((nameChunk, index) => (
+      this.renderNameChunk(nameChunk, index)
+    ));
   }
 
   renderDateChunk = (dayChunk, index) => {
@@ -110,7 +90,7 @@ class MessageList extends Component {
       return (
         <div key={index}>
           <div className="date-divider text-center">
-            {this.calcLongDate(dayChunk[0])}
+            {moment(dayChunk[0]).format('ddd, Do MMM YY')}
           </div>
           {this.groupByName(dayChunk)}
         </div>
@@ -137,11 +117,9 @@ class MessageList extends Component {
     });
     groupedByDate.push(temp);
 
-    return groupedByDate.map((dayChunk, index) => {
-      return (
-        this.renderDateChunk(dayChunk, index)   
-      );
-    });
+    return groupedByDate.map((dayChunk, index) => (
+      this.renderDateChunk(dayChunk, index)
+    ));
   }
 
   render() {
