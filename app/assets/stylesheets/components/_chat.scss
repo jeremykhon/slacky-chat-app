@@ -77,7 +77,7 @@ body {
 }
 
 .messages-container {
-  flex: 0 1 100%;
+  height: calc(100vh - 56px);
   display: flex;
   padding: 10px;
   flex-direction: column;
